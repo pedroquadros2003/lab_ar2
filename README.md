@@ -63,6 +63,32 @@ Após o treinamento, use o script `test.py` para avaliar o desempenho do agente 
 
 Uma janela do Gymnasium será aberta, mostrando o agente em ação. Ao final, um arquivo de log de teste (ex: `treino_TestLog.txt`) será criado com a recompensa obtida em cada um dos 100 episódios de teste e a média final.
 
+## Parâmetros de Treinamento (em `train.py`)
+
+Você pode ajustar os seguintes parâmetros no início do script `train.py` para experimentar diferentes configurações:
+
+### Parâmetros Físicos e de Ambiente
+- **`GRAVITY`**: Altera a força da gravidade no ambiente.
+- **`FORCE_MAGNITUDE`**: Magnitude da força horizontal aplicada ao carrinho.
+- **`POSITION_LIMIT`**, **`ANGLE_LIMIT_RADS`**, **`VELOCITY_LIMIT`**, **`ANGULAR_VELOCITY_LIMIT`**: Limites físicos que definem uma falha no episódio. Se o agente ultrapassar qualquer um desses limites, o episódio é encerrado.
+
+### Hiperparâmetros do Algoritmo Q(λ)
+- **`ALPHA`**: Taxa de Aprendizado. Controla o tamanho do passo de atualização dos valores Q. Valores mais altos significam aprendizado mais rápido, mas podem levar à instabilidade.
+- **`GAMMA`**: Fator de Desconto. Pondera a importância de recompensas futuras. Um valor próximo de 1 faz o agente se preocupar mais com o longo prazo.
+- **`LAMBDA`**: Fator de Decaimento do Rastro de Elegibilidade. Determina como o crédito de uma recompensa é distribuído para os estados e ações visitados anteriormente. `λ=0` equivale ao Q-Learning de um passo.
+
+### Parâmetros de Exploração (Epsilon-Greedy)
+- **`EPSILON`**: Probabilidade inicial de o agente escolher uma ação aleatória em vez da melhor ação conhecida. Começa alto para incentivar a exploração.
+- **`EPSILON_DECAY_RATE`**: Taxa pela qual `EPSILON` diminui a cada passo. Isso faz com que o agente explore menos e explore mais (explote) à medida que aprende.
+- **`MIN_EPSILON`**: Valor mínimo que `EPSILON` pode atingir, garantindo que sempre haja uma pequena chance de exploração.
+
+### Discretização do Espaço de Estados
+- **`N_POSITION`**, **`N_ANGLE`**, **`N_VELOCITY`**, **`N_ANGULAR_VELOCITY`**: Número de "caixas" ou "bins" para dividir cada variável contínua do estado (posição, ângulo, velocidade e velocidade angular). Uma granularidade maior (números mais altos) permite uma representação mais precisa do estado, mas aumenta drasticamente a memória e o tempo de treinamento.
+
+### Configurações Gerais de Treinamento
+- **`NUM_EPISODES`**: O número total de episódios que o agente irá treinar.
+- **`MAX_STEPS`**: O número máximo de passos (ações) que um agente pode executar em um único episódio antes que ele seja encerrado. Isso incentiva o agente a se equilibrar por mais tempo para obter uma recompensa maior.
+
 ## Arquivos do Projeto
 
 - **`train.py`**: Script principal para executar o treinamento do agente.
