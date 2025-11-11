@@ -1,14 +1,11 @@
 import gymnasium as gym
 import time
-import keyboard
 import numpy as np
 from custom_termination_wrapper import CustomTerminationWrapper
 from q_lambda import QLambdaCausal
 
 
 # --- Parâmetros Físicos Configuráveis ---
-
-FPS = 50 
 GRAVITY = 5.0
 FORCE_MAGNITUDE = 0.75
 
@@ -43,8 +40,9 @@ STATE_DIMS = (N_POSITION, N_ANGLE, N_VELOCITY, N_ANGULAR_VELOCITY)
 NUM_EPISODES = 30000
 
 # --- Parâmetros de Saída ---
-OUTPUT_FILENAME = f" q_values_{LAMBDA}.npy"   
-LOG_FILENAME = f"training_log_{LAMBDA}.txt"
+FILENAME_BASE = f"treino_lambda_{LAMBDA}"
+OUTPUT_FILENAME = f"{FILENAME_BASE}.npy"   
+LOG_FILENAME = f"{FILENAME_BASE}.txt"
 
 # --- Instanciação do Agente de IA ---
 q_agent = QLambdaCausal(
@@ -60,7 +58,7 @@ q_agent = QLambdaCausal(
 )
 
 # 1. Crie o ambiente. Use 'human' para ver o agente ou 'rgb_array' para treinar mais rápido.
-env = gym.make('InvertedPendulum-v5', render_mode='human')
+env = gym.make('InvertedPendulum-v5', render_mode='rgb_array')
 
 # Modifica a gravidade diretamente no modelo da simulação após a criação.
 # A gravidade atua no eixo Z (índice 2) e deve ser negativa para puxar para baixo.
@@ -80,6 +78,33 @@ epsilon = EPSILON
 running = True
 with open(LOG_FILENAME, 'w') as log_file:
     try:
+        # --- Cria e escreve o cabeçalho no arquivo de log ---
+        header = f"""
+======================================================================
+               RELATÓRIO DE TREINAMENTO - PÊNDULO INVERTIDO
+======================================================================
+
+--- Hiperparâmetros do Algoritmo Q(λ) ---
+Taxa de Aprendizado (ALPHA): {ALPHA}
+Fator de Desconto (GAMMA):   {GAMMA}
+Fator de Decaimento (LAMBDA):  {LAMBDA}
+
+--- Parâmetros de Exploração (Epsilon-Greedy) ---
+Epsilon Inicial:      {EPSILON}
+Taxa de Decaimento:   {EPSILON_DECAY_RATE}
+Epsilon Mínimo:       {MIN_EPSILON}
+
+--- Discretização do Espaço de Estados ---
+Posição:     {N_POSITION} bins
+Ângulo:      {N_ANGLE} bins
+Velocidade:  {N_VELOCITY} bins
+Vel. Angular:{N_ANGULAR_VELOCITY} bins
+
+--- Configurações Gerais ---
+Episódios de Treino: {NUM_EPISODES}
+======================================================================\n\n"""
+        log_file.write(header)
+
         for episode in range(NUM_EPISODES):
             # Reinicia o ambiente para cada episódio
             prev_observation, info = env.reset()
@@ -110,9 +135,6 @@ with open(LOG_FILENAME, 'w') as log_file:
                 # Decai o epsilon para reduzir a exploração ao longo do tempo
                 epsilon = max(MIN_EPSILON, epsilon - EPSILON_DECAY_RATE)
 
-                # Pausa para visualização (pode ser removido para treinamento rápido)
-                time.sleep(1 / FPS)
-            
             if (episode + 1) % 100 == 0:
                 log_message = f"Episódio: {episode + 1}/{NUM_EPISODES}, Recompensa Total: {total_reward:.2f}, Epsilon: {epsilon:.4f}"
                 print(log_message)
@@ -125,8 +147,26 @@ with open(LOG_FILENAME, 'w') as log_file:
         print(final_message1)
         log_file.write(final_message1 + '\n')
 
-        # 6. Salva a matriz Q em um arquivo binário NumPy.
-        np.save(OUTPUT_FILENAME, q_agent.q_matrix)
+        # 6. Agrupa a matriz Q e os parâmetros para salvar em um único arquivo.
+        data_to_save = {
+            'q_matrix': q_agent.q_matrix,
+            'params': {
+                'GRAVITY': GRAVITY,
+                'FORCE_MAGNITUDE': FORCE_MAGNITUDE,
+                'POSITION_LIMIT': POSITION_LIMIT,
+                'ANGLE_LIMIT_RADS': ANGLE_LIMIT_RADS,
+                'VELOCITY_LIMIT': VELOCITY_LIMIT,
+                'ANGULAR_VELOCITY_LIMIT': ANGULAR_VELOCITY_LIMIT,
+                'N_POSITION': N_POSITION,
+                'N_ANGLE': N_ANGLE,
+                'N_VELOCITY': N_VELOCITY,
+                'N_ANGULAR_VELOCITY': N_ANGULAR_VELOCITY,
+                'LAMBDA': LAMBDA
+            }
+        }
+        
+        # Salva o dicionário em um arquivo binário NumPy.
+        np.save(OUTPUT_FILENAME, data_to_save)
         
         final_message2 = f"Matriz Q salva em '{OUTPUT_FILENAME}'."
         print(final_message2)
