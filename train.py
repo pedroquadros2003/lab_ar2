@@ -37,11 +37,11 @@ N_ANGULAR_VELOCITY = 10
 STATE_DIMS = (N_POSITION, N_ANGLE, N_VELOCITY, N_ANGULAR_VELOCITY)
 
 # --- Parâmetros de Treinamento ---
-NUM_EPISODES = 30000
+NUM_EPISODES = 3000
 MAX_STEPS = 500 # Número máximo de passos por episódio
 
 # --- Parâmetros de Saída ---
-FILENAME_BASE = f"treino_lambda_{LAMBDA}"
+FILENAME_BASE = f"treino_resenha"
 OUTPUT_FILENAME = f"{FILENAME_BASE}.npy"   
 LOG_FILENAME = f"{FILENAME_BASE}.txt"
 

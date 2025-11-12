@@ -2,7 +2,7 @@ import numpy as np
 
 class QLambdaCausal():
     """
-    Implementa o algoritmo Q(λ) online de Peng e Williams (1996).
+    Implementa o algoritmo Q(λ) online.
     Este algoritmo aprende uma função de valor de ação Q(s, a) usando rastros de elegibilidade.
     """
     

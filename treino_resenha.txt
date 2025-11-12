@@ -1,0 +1,64 @@
+
+======================================================================
+               RELATÓRIO DE TREINAMENTO - PÊNDULO INVERTIDO
+======================================================================
+
+--- Hiperparâmetros do Algoritmo Q(λ) ---
+Taxa de Aprendizado (ALPHA): 0.05
+Fator de Desconto (GAMMA):   0.95
+Fator de Decaimento (LAMBDA):  0.8
+
+--- Restrições Físicas ---
+Limite de Posição:    1
+Limite de Ângulo (rad): 0.5
+Limite de Velocidade: 3
+Limite de Vel. Angular: 3
+
+--- Parâmetros de Exploração (Epsilon-Greedy) ---
+Epsilon Inicial:      1.0
+Taxa de Decaimento:   5e-05
+Epsilon Mínimo:       0.01
+
+--- Discretização do Espaço de Estados ---
+Posição:     6 bins
+Ângulo:      10 bins
+Velocidade:  6 bins
+Vel. Angular:10 bins
+
+--- Configurações Gerais ---
+Episódios de Treino: 3000
+Passos Máximos por Episódio: 500
+======================================================================
+
+Episódio: 100/3000, Recompensa Total: 2.00, Epsilon: 0.9631
+Episódio: 200/3000, Recompensa Total: 13.00, Epsilon: 0.9191
+Episódio: 300/3000, Recompensa Total: 3.00, Epsilon: 0.8727
+Episódio: 400/3000, Recompensa Total: 11.00, Epsilon: 0.8261
+Episódio: 500/3000, Recompensa Total: 6.00, Epsilon: 0.7717
+Episódio: 600/3000, Recompensa Total: 5.00, Epsilon: 0.7157
+Episódio: 700/3000, Recompensa Total: 2.00, Epsilon: 0.6582
+Episódio: 800/3000, Recompensa Total: 11.00, Epsilon: 0.5852
+Episódio: 900/3000, Recompensa Total: 17.00, Epsilon: 0.4998
+Episódio: 1000/3000, Recompensa Total: 17.00, Epsilon: 0.4010
+Episódio: 1100/3000, Recompensa Total: 29.00, Epsilon: 0.2832
+Episódio: 1200/3000, Recompensa Total: 86.00, Epsilon: 0.0802
+Episódio: 1300/3000, Recompensa Total: 94.00, Epsilon: 0.0100
+Episódio: 1400/3000, Recompensa Total: 86.00, Epsilon: 0.0100
+Episódio: 1500/3000, Recompensa Total: 83.00, Epsilon: 0.0100
+Episódio: 1600/3000, Recompensa Total: 50.00, Epsilon: 0.0100
+Episódio: 1700/3000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 1800/3000, Recompensa Total: 64.00, Epsilon: 0.0100
+Episódio: 1900/3000, Recompensa Total: 78.00, Epsilon: 0.0100
+Episódio: 2000/3000, Recompensa Total: 51.00, Epsilon: 0.0100
+Episódio: 2100/3000, Recompensa Total: 46.00, Epsilon: 0.0100
+Episódio: 2200/3000, Recompensa Total: 77.00, Epsilon: 0.0100
+Episódio: 2300/3000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 2400/3000, Recompensa Total: 73.00, Epsilon: 0.0100
+Episódio: 2500/3000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 2600/3000, Recompensa Total: 101.00, Epsilon: 0.0100
+Episódio: 2700/3000, Recompensa Total: 19.00, Epsilon: 0.0100
+Episódio: 2800/3000, Recompensa Total: 78.00, Epsilon: 0.0100
+Episódio: 2900/3000, Recompensa Total: 177.00, Epsilon: 0.0100
+Episódio: 3000/3000, Recompensa Total: 68.00, Epsilon: 0.0100
+Treinamento concluído. Salvando os valores Q...
+Matriz Q salva em 'treino_resenha.npy'.

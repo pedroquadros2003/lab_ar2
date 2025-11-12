@@ -1,0 +1,25 @@
+
+======================================================================
+               RELATÓRIO DE TESTE - PÊNDULO INVERTIDO
+======================================================================
+Modelo Carregado: treino_resenha.npy
+Número de Episódios de Teste: 20
+======================================================================
+
+Episodio de Teste: 1/20, Recompensa Total: 48.00
+Episodio de Teste: 2/20, Recompensa Total: 74.00
+Episodio de Teste: 3/20, Recompensa Total: 117.00
+Episodio de Teste: 4/20, Recompensa Total: 58.00
+Episodio de Teste: 5/20, Recompensa Total: 89.00
+Episodio de Teste: 6/20, Recompensa Total: 93.00
+Episodio de Teste: 7/20, Recompensa Total: 61.00
+Episodio de Teste: 8/20, Recompensa Total: 46.00
+Episodio de Teste: 9/20, Recompensa Total: 83.00
+Episodio de Teste: 10/20, Recompensa Total: 42.00
+Episodio de Teste: 11/20, Recompensa Total: 61.00
+Episodio de Teste: 12/20, Recompensa Total: 61.00
+Episodio de Teste: 13/20, Recompensa Total: 66.00
+Episodio de Teste: 14/20, Recompensa Total: 46.00
+Episodio de Teste: 15/20, Recompensa Total: 70.00
+
+Recompensa Media em 20 episodios: 67.67
