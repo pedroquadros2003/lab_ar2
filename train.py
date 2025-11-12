@@ -6,8 +6,8 @@ from q_lambda import QLambdaCausal
 
 
 # --- Parâmetros Físicos Configuráveis ---
-GRAVITY = 5.0
-FORCE_MAGNITUDE = 0.75
+GRAVITY = 10.0
+FORCE_MAGNITUDE = 1.5
 
 # --- Restrições Físicas Impostas ao Problema ---
 
@@ -20,12 +20,12 @@ ANGULAR_VELOCITY_LIMIT = 3
 
 ALPHA = 0.05  # Taxa de aprendizado (learning rate)
 GAMMA = 0.95 # Fator de desconto para recompensas futuras
-LAMBDA = 0.5 # Fator de decaimento para os rastros de elegibilidade
+LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
 
 # --- Parâmetros de Exploração (Epsilon-Greedy) ---
 
 EPSILON = 1.0
-EPSILON_DECAY_RATE = 0.00001
+EPSILON_DECAY_RATE = 0.00005
 MIN_EPSILON = 0.01
 
 # --- Parâmetros da Discretização do Espaço de Estados ---
@@ -38,7 +38,7 @@ STATE_DIMS = (N_POSITION, N_ANGLE, N_VELOCITY, N_ANGULAR_VELOCITY)
 
 # --- Parâmetros de Treinamento ---
 NUM_EPISODES = 30000
-MAX_STEPS = 1000 # Número máximo de passos por episódio
+MAX_STEPS = 500 # Número máximo de passos por episódio
 
 # --- Parâmetros de Saída ---
 FILENAME_BASE = f"treino_lambda_{LAMBDA}"
@@ -80,7 +80,7 @@ observation, info = env.reset(seed=42) # Inicializamos uma seed para tornar o tr
 epsilon = EPSILON
 
 running = True
-with open(LOG_FILENAME, 'w') as log_file:
+with open(LOG_FILENAME, 'w', encoding='utf-8') as log_file:
     try:
         # --- Cria e escreve o cabeçalho no arquivo de log ---
         header = f"""

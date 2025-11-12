@@ -1,0 +1,334 @@
+
+======================================================================
+               RELATÓRIO DE TREINAMENTO - PÊNDULO INVERTIDO
+======================================================================
+
+--- Hiperparâmetros do Algoritmo Q(λ) ---
+Taxa de Aprendizado (ALPHA): 0.05
+Fator de Desconto (GAMMA):   0.95
+Fator de Decaimento (LAMBDA):  0.8
+
+--- Restrições Físicas ---
+Limite de Posição:    1
+Limite de Ângulo (rad): 0.5
+Limite de Velocidade: 3
+Limite de Vel. Angular: 3
+
+--- Parâmetros de Exploração (Epsilon-Greedy) ---
+Epsilon Inicial:      1.0
+Taxa de Decaimento:   5e-05
+Epsilon Mínimo:       0.01
+
+--- Discretização do Espaço de Estados ---
+Posição:     6 bins
+Ângulo:      10 bins
+Velocidade:  6 bins
+Vel. Angular:10 bins
+
+--- Configurações Gerais ---
+Episódios de Treino: 30000
+Passos Máximos por Episódio: 500
+======================================================================
+
+Episódio: 100/30000, Recompensa Total: 3.00, Epsilon: 0.9568
+Episódio: 200/30000, Recompensa Total: 8.00, Epsilon: 0.9105
+Episódio: 300/30000, Recompensa Total: 12.00, Epsilon: 0.8618
+Episódio: 400/30000, Recompensa Total: 18.00, Epsilon: 0.8083
+Episódio: 500/30000, Recompensa Total: 12.00, Epsilon: 0.7522
+Episódio: 600/30000, Recompensa Total: 13.00, Epsilon: 0.6925
+Episódio: 700/30000, Recompensa Total: 6.00, Epsilon: 0.6252
+Episódio: 800/30000, Recompensa Total: 59.00, Epsilon: 0.5537
+Episódio: 900/30000, Recompensa Total: 9.00, Epsilon: 0.4670
+Episódio: 1000/30000, Recompensa Total: 28.00, Epsilon: 0.3729
+Episódio: 1100/30000, Recompensa Total: 55.00, Epsilon: 0.2384
+Episódio: 1200/30000, Recompensa Total: 47.00, Epsilon: 0.0525
+Episódio: 1300/30000, Recompensa Total: 54.00, Epsilon: 0.0100
+Episódio: 1400/30000, Recompensa Total: 58.00, Epsilon: 0.0100
+Episódio: 1500/30000, Recompensa Total: 49.00, Epsilon: 0.0100
+Episódio: 1600/30000, Recompensa Total: 62.00, Epsilon: 0.0100
+Episódio: 1700/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 1800/30000, Recompensa Total: 55.00, Epsilon: 0.0100
+Episódio: 1900/30000, Recompensa Total: 44.00, Epsilon: 0.0100
+Episódio: 2000/30000, Recompensa Total: 69.00, Epsilon: 0.0100
+Episódio: 2100/30000, Recompensa Total: 61.00, Epsilon: 0.0100
+Episódio: 2200/30000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 2300/30000, Recompensa Total: 55.00, Epsilon: 0.0100
+Episódio: 2400/30000, Recompensa Total: 49.00, Epsilon: 0.0100
+Episódio: 2500/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 2600/30000, Recompensa Total: 48.00, Epsilon: 0.0100
+Episódio: 2700/30000, Recompensa Total: 55.00, Epsilon: 0.0100
+Episódio: 2800/30000, Recompensa Total: 91.00, Epsilon: 0.0100
+Episódio: 2900/30000, Recompensa Total: 66.00, Epsilon: 0.0100
+Episódio: 3000/30000, Recompensa Total: 47.00, Epsilon: 0.0100
+Episódio: 3100/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 3200/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 3300/30000, Recompensa Total: 54.00, Epsilon: 0.0100
+Episódio: 3400/30000, Recompensa Total: 55.00, Epsilon: 0.0100
+Episódio: 3500/30000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 3600/30000, Recompensa Total: 41.00, Epsilon: 0.0100
+Episódio: 3700/30000, Recompensa Total: 51.00, Epsilon: 0.0100
+Episódio: 3800/30000, Recompensa Total: 68.00, Epsilon: 0.0100
+Episódio: 3900/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 4000/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 4100/30000, Recompensa Total: 113.00, Epsilon: 0.0100
+Episódio: 4200/30000, Recompensa Total: 53.00, Epsilon: 0.0100
+Episódio: 4300/30000, Recompensa Total: 58.00, Epsilon: 0.0100
+Episódio: 4400/30000, Recompensa Total: 74.00, Epsilon: 0.0100
+Episódio: 4500/30000, Recompensa Total: 177.00, Epsilon: 0.0100
+Episódio: 4600/30000, Recompensa Total: 88.00, Epsilon: 0.0100
+Episódio: 4700/30000, Recompensa Total: 22.00, Epsilon: 0.0100
+Episódio: 4800/30000, Recompensa Total: 61.00, Epsilon: 0.0100
+Episódio: 4900/30000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 5000/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 5100/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 5200/30000, Recompensa Total: 91.00, Epsilon: 0.0100
+Episódio: 5300/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 5400/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 5500/30000, Recompensa Total: 51.00, Epsilon: 0.0100
+Episódio: 5600/30000, Recompensa Total: 61.00, Epsilon: 0.0100
+Episódio: 5700/30000, Recompensa Total: 100.00, Epsilon: 0.0100
+Episódio: 5800/30000, Recompensa Total: 19.00, Epsilon: 0.0100
+Episódio: 5900/30000, Recompensa Total: 38.00, Epsilon: 0.0100
+Episódio: 6000/30000, Recompensa Total: 55.00, Epsilon: 0.0100
+Episódio: 6100/30000, Recompensa Total: 29.00, Epsilon: 0.0100
+Episódio: 6200/30000, Recompensa Total: 50.00, Epsilon: 0.0100
+Episódio: 6300/30000, Recompensa Total: 75.00, Epsilon: 0.0100
+Episódio: 6400/30000, Recompensa Total: 70.00, Epsilon: 0.0100
+Episódio: 6500/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 6600/30000, Recompensa Total: 82.00, Epsilon: 0.0100
+Episódio: 6700/30000, Recompensa Total: 147.00, Epsilon: 0.0100
+Episódio: 6800/30000, Recompensa Total: 74.00, Epsilon: 0.0100
+Episódio: 6900/30000, Recompensa Total: 76.00, Epsilon: 0.0100
+Episódio: 7000/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 7100/30000, Recompensa Total: 87.00, Epsilon: 0.0100
+Episódio: 7200/30000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 7300/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 7400/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 7500/30000, Recompensa Total: 75.00, Epsilon: 0.0100
+Episódio: 7600/30000, Recompensa Total: 49.00, Epsilon: 0.0100
+Episódio: 7700/30000, Recompensa Total: 67.00, Epsilon: 0.0100
+Episódio: 7800/30000, Recompensa Total: 56.00, Epsilon: 0.0100
+Episódio: 7900/30000, Recompensa Total: 51.00, Epsilon: 0.0100
+Episódio: 8000/30000, Recompensa Total: 101.00, Epsilon: 0.0100
+Episódio: 8100/30000, Recompensa Total: 65.00, Epsilon: 0.0100
+Episódio: 8200/30000, Recompensa Total: 68.00, Epsilon: 0.0100
+Episódio: 8300/30000, Recompensa Total: 45.00, Epsilon: 0.0100
+Episódio: 8400/30000, Recompensa Total: 36.00, Epsilon: 0.0100
+Episódio: 8500/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 8600/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 8700/30000, Recompensa Total: 61.00, Epsilon: 0.0100
+Episódio: 8800/30000, Recompensa Total: 86.00, Epsilon: 0.0100
+Episódio: 8900/30000, Recompensa Total: 111.00, Epsilon: 0.0100
+Episódio: 9000/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 9100/30000, Recompensa Total: 60.00, Epsilon: 0.0100
+Episódio: 9200/30000, Recompensa Total: 73.00, Epsilon: 0.0100
+Episódio: 9300/30000, Recompensa Total: 65.00, Epsilon: 0.0100
+Episódio: 9400/30000, Recompensa Total: 83.00, Epsilon: 0.0100
+Episódio: 9500/30000, Recompensa Total: 92.00, Epsilon: 0.0100
+Episódio: 9600/30000, Recompensa Total: 81.00, Epsilon: 0.0100
+Episódio: 9700/30000, Recompensa Total: 97.00, Epsilon: 0.0100
+Episódio: 9800/30000, Recompensa Total: 54.00, Epsilon: 0.0100
+Episódio: 9900/30000, Recompensa Total: 9.00, Epsilon: 0.0100
+Episódio: 10000/30000, Recompensa Total: 70.00, Epsilon: 0.0100
+Episódio: 10100/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 10200/30000, Recompensa Total: 58.00, Epsilon: 0.0100
+Episódio: 10300/30000, Recompensa Total: 71.00, Epsilon: 0.0100
+Episódio: 10400/30000, Recompensa Total: 170.00, Epsilon: 0.0100
+Episódio: 10500/30000, Recompensa Total: 70.00, Epsilon: 0.0100
+Episódio: 10600/30000, Recompensa Total: 80.00, Epsilon: 0.0100
+Episódio: 10700/30000, Recompensa Total: 72.00, Epsilon: 0.0100
+Episódio: 10800/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 10900/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 11000/30000, Recompensa Total: 36.00, Epsilon: 0.0100
+Episódio: 11100/30000, Recompensa Total: 62.00, Epsilon: 0.0100
+Episódio: 11200/30000, Recompensa Total: 86.00, Epsilon: 0.0100
+Episódio: 11300/30000, Recompensa Total: 166.00, Epsilon: 0.0100
+Episódio: 11400/30000, Recompensa Total: 141.00, Epsilon: 0.0100
+Episódio: 11500/30000, Recompensa Total: 76.00, Epsilon: 0.0100
+Episódio: 11600/30000, Recompensa Total: 72.00, Epsilon: 0.0100
+Episódio: 11700/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 11800/30000, Recompensa Total: 107.00, Epsilon: 0.0100
+Episódio: 11900/30000, Recompensa Total: 72.00, Epsilon: 0.0100
+Episódio: 12000/30000, Recompensa Total: 48.00, Epsilon: 0.0100
+Episódio: 12100/30000, Recompensa Total: 42.00, Epsilon: 0.0100
+Episódio: 12200/30000, Recompensa Total: 77.00, Epsilon: 0.0100
+Episódio: 12300/30000, Recompensa Total: 81.00, Epsilon: 0.0100
+Episódio: 12400/30000, Recompensa Total: 67.00, Epsilon: 0.0100
+Episódio: 12500/30000, Recompensa Total: 100.00, Epsilon: 0.0100
+Episódio: 12600/30000, Recompensa Total: 89.00, Epsilon: 0.0100
+Episódio: 12700/30000, Recompensa Total: 82.00, Epsilon: 0.0100
+Episódio: 12800/30000, Recompensa Total: 47.00, Epsilon: 0.0100
+Episódio: 12900/30000, Recompensa Total: 73.00, Epsilon: 0.0100
+Episódio: 13000/30000, Recompensa Total: 98.00, Epsilon: 0.0100
+Episódio: 13100/30000, Recompensa Total: 47.00, Epsilon: 0.0100
+Episódio: 13200/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 13300/30000, Recompensa Total: 70.00, Epsilon: 0.0100
+Episódio: 13400/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 13500/30000, Recompensa Total: 79.00, Epsilon: 0.0100
+Episódio: 13600/30000, Recompensa Total: 25.00, Epsilon: 0.0100
+Episódio: 13700/30000, Recompensa Total: 78.00, Epsilon: 0.0100
+Episódio: 13800/30000, Recompensa Total: 27.00, Epsilon: 0.0100
+Episódio: 13900/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 14000/30000, Recompensa Total: 84.00, Epsilon: 0.0100
+Episódio: 14100/30000, Recompensa Total: 54.00, Epsilon: 0.0100
+Episódio: 14200/30000, Recompensa Total: 45.00, Epsilon: 0.0100
+Episódio: 14300/30000, Recompensa Total: 81.00, Epsilon: 0.0100
+Episódio: 14400/30000, Recompensa Total: 95.00, Epsilon: 0.0100
+Episódio: 14500/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 14600/30000, Recompensa Total: 65.00, Epsilon: 0.0100
+Episódio: 14700/30000, Recompensa Total: 91.00, Epsilon: 0.0100
+Episódio: 14800/30000, Recompensa Total: 74.00, Epsilon: 0.0100
+Episódio: 14900/30000, Recompensa Total: 77.00, Epsilon: 0.0100
+Episódio: 15000/30000, Recompensa Total: 71.00, Epsilon: 0.0100
+Episódio: 15100/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 15200/30000, Recompensa Total: 60.00, Epsilon: 0.0100
+Episódio: 15300/30000, Recompensa Total: 86.00, Epsilon: 0.0100
+Episódio: 15400/30000, Recompensa Total: 77.00, Epsilon: 0.0100
+Episódio: 15500/30000, Recompensa Total: 75.00, Epsilon: 0.0100
+Episódio: 15600/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 15700/30000, Recompensa Total: 82.00, Epsilon: 0.0100
+Episódio: 15800/30000, Recompensa Total: 87.00, Epsilon: 0.0100
+Episódio: 15900/30000, Recompensa Total: 55.00, Epsilon: 0.0100
+Episódio: 16000/30000, Recompensa Total: 63.00, Epsilon: 0.0100
+Episódio: 16100/30000, Recompensa Total: 155.00, Epsilon: 0.0100
+Episódio: 16200/30000, Recompensa Total: 83.00, Epsilon: 0.0100
+Episódio: 16300/30000, Recompensa Total: 100.00, Epsilon: 0.0100
+Episódio: 16400/30000, Recompensa Total: 30.00, Epsilon: 0.0100
+Episódio: 16500/30000, Recompensa Total: 64.00, Epsilon: 0.0100
+Episódio: 16600/30000, Recompensa Total: 205.00, Epsilon: 0.0100
+Episódio: 16700/30000, Recompensa Total: 100.00, Epsilon: 0.0100
+Episódio: 16800/30000, Recompensa Total: 169.00, Epsilon: 0.0100
+Episódio: 16900/30000, Recompensa Total: 123.00, Epsilon: 0.0100
+Episódio: 17000/30000, Recompensa Total: 78.00, Epsilon: 0.0100
+Episódio: 17100/30000, Recompensa Total: 8.00, Epsilon: 0.0100
+Episódio: 17200/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 17300/30000, Recompensa Total: 96.00, Epsilon: 0.0100
+Episódio: 17400/30000, Recompensa Total: 132.00, Epsilon: 0.0100
+Episódio: 17500/30000, Recompensa Total: 85.00, Epsilon: 0.0100
+Episódio: 17600/30000, Recompensa Total: 104.00, Epsilon: 0.0100
+Episódio: 17700/30000, Recompensa Total: 182.00, Epsilon: 0.0100
+Episódio: 17800/30000, Recompensa Total: 47.00, Epsilon: 0.0100
+Episódio: 17900/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 18000/30000, Recompensa Total: 65.00, Epsilon: 0.0100
+Episódio: 18100/30000, Recompensa Total: 58.00, Epsilon: 0.0100
+Episódio: 18200/30000, Recompensa Total: 214.00, Epsilon: 0.0100
+Episódio: 18300/30000, Recompensa Total: 47.00, Epsilon: 0.0100
+Episódio: 18400/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 18500/30000, Recompensa Total: 44.00, Epsilon: 0.0100
+Episódio: 18600/30000, Recompensa Total: 99.00, Epsilon: 0.0100
+Episódio: 18700/30000, Recompensa Total: 85.00, Epsilon: 0.0100
+Episódio: 18800/30000, Recompensa Total: 54.00, Epsilon: 0.0100
+Episódio: 18900/30000, Recompensa Total: 159.00, Epsilon: 0.0100
+Episódio: 19000/30000, Recompensa Total: 108.00, Epsilon: 0.0100
+Episódio: 19100/30000, Recompensa Total: 140.00, Epsilon: 0.0100
+Episódio: 19200/30000, Recompensa Total: 62.00, Epsilon: 0.0100
+Episódio: 19300/30000, Recompensa Total: 71.00, Epsilon: 0.0100
+Episódio: 19400/30000, Recompensa Total: 78.00, Epsilon: 0.0100
+Episódio: 19500/30000, Recompensa Total: 50.00, Epsilon: 0.0100
+Episódio: 19600/30000, Recompensa Total: 115.00, Epsilon: 0.0100
+Episódio: 19700/30000, Recompensa Total: 113.00, Epsilon: 0.0100
+Episódio: 19800/30000, Recompensa Total: 67.00, Epsilon: 0.0100
+Episódio: 19900/30000, Recompensa Total: 46.00, Epsilon: 0.0100
+Episódio: 20000/30000, Recompensa Total: 95.00, Epsilon: 0.0100
+Episódio: 20100/30000, Recompensa Total: 77.00, Epsilon: 0.0100
+Episódio: 20200/30000, Recompensa Total: 75.00, Epsilon: 0.0100
+Episódio: 20300/30000, Recompensa Total: 129.00, Epsilon: 0.0100
+Episódio: 20400/30000, Recompensa Total: 42.00, Epsilon: 0.0100
+Episódio: 20500/30000, Recompensa Total: 88.00, Epsilon: 0.0100
+Episódio: 20600/30000, Recompensa Total: 50.00, Epsilon: 0.0100
+Episódio: 20700/30000, Recompensa Total: 129.00, Epsilon: 0.0100
+Episódio: 20800/30000, Recompensa Total: 68.00, Epsilon: 0.0100
+Episódio: 20900/30000, Recompensa Total: 74.00, Epsilon: 0.0100
+Episódio: 21000/30000, Recompensa Total: 134.00, Epsilon: 0.0100
+Episódio: 21100/30000, Recompensa Total: 35.00, Epsilon: 0.0100
+Episódio: 21200/30000, Recompensa Total: 39.00, Epsilon: 0.0100
+Episódio: 21300/30000, Recompensa Total: 60.00, Epsilon: 0.0100
+Episódio: 21400/30000, Recompensa Total: 36.00, Epsilon: 0.0100
+Episódio: 21500/30000, Recompensa Total: 80.00, Epsilon: 0.0100
+Episódio: 21600/30000, Recompensa Total: 56.00, Epsilon: 0.0100
+Episódio: 21700/30000, Recompensa Total: 56.00, Epsilon: 0.0100
+Episódio: 21800/30000, Recompensa Total: 86.00, Epsilon: 0.0100
+Episódio: 21900/30000, Recompensa Total: 68.00, Epsilon: 0.0100
+Episódio: 22000/30000, Recompensa Total: 46.00, Epsilon: 0.0100
+Episódio: 22100/30000, Recompensa Total: 56.00, Epsilon: 0.0100
+Episódio: 22200/30000, Recompensa Total: 72.00, Epsilon: 0.0100
+Episódio: 22300/30000, Recompensa Total: 32.00, Epsilon: 0.0100
+Episódio: 22400/30000, Recompensa Total: 145.00, Epsilon: 0.0100
+Episódio: 22500/30000, Recompensa Total: 88.00, Epsilon: 0.0100
+Episódio: 22600/30000, Recompensa Total: 103.00, Epsilon: 0.0100
+Episódio: 22700/30000, Recompensa Total: 42.00, Epsilon: 0.0100
+Episódio: 22800/30000, Recompensa Total: 115.00, Epsilon: 0.0100
+Episódio: 22900/30000, Recompensa Total: 66.00, Epsilon: 0.0100
+Episódio: 23000/30000, Recompensa Total: 67.00, Epsilon: 0.0100
+Episódio: 23100/30000, Recompensa Total: 52.00, Epsilon: 0.0100
+Episódio: 23200/30000, Recompensa Total: 89.00, Epsilon: 0.0100
+Episódio: 23300/30000, Recompensa Total: 120.00, Epsilon: 0.0100
+Episódio: 23400/30000, Recompensa Total: 88.00, Epsilon: 0.0100
+Episódio: 23500/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 23600/30000, Recompensa Total: 34.00, Epsilon: 0.0100
+Episódio: 23700/30000, Recompensa Total: 61.00, Epsilon: 0.0100
+Episódio: 23800/30000, Recompensa Total: 70.00, Epsilon: 0.0100
+Episódio: 23900/30000, Recompensa Total: 123.00, Epsilon: 0.0100
+Episódio: 24000/30000, Recompensa Total: 322.00, Epsilon: 0.0100
+Episódio: 24100/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 24200/30000, Recompensa Total: 121.00, Epsilon: 0.0100
+Episódio: 24300/30000, Recompensa Total: 62.00, Epsilon: 0.0100
+Episódio: 24400/30000, Recompensa Total: 179.00, Epsilon: 0.0100
+Episódio: 24500/30000, Recompensa Total: 65.00, Epsilon: 0.0100
+Episódio: 24600/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 24700/30000, Recompensa Total: 23.00, Epsilon: 0.0100
+Episódio: 24800/30000, Recompensa Total: 72.00, Epsilon: 0.0100
+Episódio: 24900/30000, Recompensa Total: 107.00, Epsilon: 0.0100
+Episódio: 25000/30000, Recompensa Total: 48.00, Epsilon: 0.0100
+Episódio: 25100/30000, Recompensa Total: 183.00, Epsilon: 0.0100
+Episódio: 25200/30000, Recompensa Total: 65.00, Epsilon: 0.0100
+Episódio: 25300/30000, Recompensa Total: 81.00, Epsilon: 0.0100
+Episódio: 25400/30000, Recompensa Total: 84.00, Epsilon: 0.0100
+Episódio: 25500/30000, Recompensa Total: 57.00, Epsilon: 0.0100
+Episódio: 25600/30000, Recompensa Total: 237.00, Epsilon: 0.0100
+Episódio: 25700/30000, Recompensa Total: 88.00, Epsilon: 0.0100
+Episódio: 25800/30000, Recompensa Total: 73.00, Epsilon: 0.0100
+Episódio: 25900/30000, Recompensa Total: 122.00, Epsilon: 0.0100
+Episódio: 26000/30000, Recompensa Total: 42.00, Epsilon: 0.0100
+Episódio: 26100/30000, Recompensa Total: 50.00, Epsilon: 0.0100
+Episódio: 26200/30000, Recompensa Total: 32.00, Epsilon: 0.0100
+Episódio: 26300/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 26400/30000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 26500/30000, Recompensa Total: 238.00, Epsilon: 0.0100
+Episódio: 26600/30000, Recompensa Total: 54.00, Epsilon: 0.0100
+Episódio: 26700/30000, Recompensa Total: 215.00, Epsilon: 0.0100
+Episódio: 26800/30000, Recompensa Total: 94.00, Epsilon: 0.0100
+Episódio: 26900/30000, Recompensa Total: 61.00, Epsilon: 0.0100
+Episódio: 27000/30000, Recompensa Total: 40.00, Epsilon: 0.0100
+Episódio: 27100/30000, Recompensa Total: 40.00, Epsilon: 0.0100
+Episódio: 27200/30000, Recompensa Total: 22.00, Epsilon: 0.0100
+Episódio: 27300/30000, Recompensa Total: 142.00, Epsilon: 0.0100
+Episódio: 27400/30000, Recompensa Total: 46.00, Epsilon: 0.0100
+Episódio: 27500/30000, Recompensa Total: 59.00, Epsilon: 0.0100
+Episódio: 27600/30000, Recompensa Total: 152.00, Epsilon: 0.0100
+Episódio: 27700/30000, Recompensa Total: 58.00, Epsilon: 0.0100
+Episódio: 27800/30000, Recompensa Total: 119.00, Epsilon: 0.0100
+Episódio: 27900/30000, Recompensa Total: 74.00, Epsilon: 0.0100
+Episódio: 28000/30000, Recompensa Total: 96.00, Epsilon: 0.0100
+Episódio: 28100/30000, Recompensa Total: 86.00, Epsilon: 0.0100
+Episódio: 28200/30000, Recompensa Total: 129.00, Epsilon: 0.0100
+Episódio: 28300/30000, Recompensa Total: 38.00, Epsilon: 0.0100
+Episódio: 28400/30000, Recompensa Total: 289.00, Epsilon: 0.0100
+Episódio: 28500/30000, Recompensa Total: 47.00, Epsilon: 0.0100
+Episódio: 28600/30000, Recompensa Total: 43.00, Epsilon: 0.0100
+Episódio: 28700/30000, Recompensa Total: 34.00, Epsilon: 0.0100
+Episódio: 28800/30000, Recompensa Total: 74.00, Epsilon: 0.0100
+Episódio: 28900/30000, Recompensa Total: 26.00, Epsilon: 0.0100
+Episódio: 29000/30000, Recompensa Total: 115.00, Epsilon: 0.0100
+Episódio: 29100/30000, Recompensa Total: 110.00, Epsilon: 0.0100
+Episódio: 29200/30000, Recompensa Total: 500.00, Epsilon: 0.0100
+Episódio: 29300/30000, Recompensa Total: 66.00, Epsilon: 0.0100
+Episódio: 29400/30000, Recompensa Total: 44.00, Epsilon: 0.0100
+Episódio: 29500/30000, Recompensa Total: 44.00, Epsilon: 0.0100
+Episódio: 29600/30000, Recompensa Total: 120.00, Epsilon: 0.0100
+Episódio: 29700/30000, Recompensa Total: 103.00, Epsilon: 0.0100
+Episódio: 29800/30000, Recompensa Total: 105.00, Epsilon: 0.0100
+Episódio: 29900/30000, Recompensa Total: 62.00, Epsilon: 0.0100
+Episódio: 30000/30000, Recompensa Total: 58.00, Epsilon: 0.0100
+Treinamento concluído. Salvando os valores Q...
+Matriz Q salva em 'treino_lambda_0.8.npy'.

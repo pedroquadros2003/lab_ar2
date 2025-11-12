@@ -69,7 +69,7 @@ env = CustomTerminationWrapper(
 
 total_rewards_list = []
 
-with open(TEST_LOG_FILENAME, 'w') as log_file:
+with open(TEST_LOG_FILENAME, 'w', encoding='utf-8') as log_file:
     try:
         header = f"""
 ======================================================================
