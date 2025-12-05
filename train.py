@@ -1,91 +1,49 @@
 import gymnasium as gym
 import time
+import os
+import importlib
 import numpy as np
 from custom_termination_wrapper import CustomTerminationWrapper
 from q_lambda import QLambdaCausal
 import grafico
 
-# -------------------------------------------------------------------------------------
-#   Parâmetros para treino do Q learning com valores da aula
-# --- Hiperparâmetros do Algoritmo Q(λ) ---
-ALPHA = 0.11 # Taxa de aprendizado (learning rate)
-GAMMA = 0.97 # Fator de desconto para recompensas futuras
-LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
-# --- Parâmetros de Exploração (Epsilon-Greedy) ---
-EPSILON = 1.0
-EPSILON_DECAY_RATE = 5e-5
-MIN_EPSILON = 0.00001
-# --- Parâmetros de Saída ---
-FILENAME_BASE = f"treino_Qlambda3"
+# --- SELEÇÃO DE CONFIGURAÇÃO ---
+# Para mudar o experimento, altere o nome do arquivo na string abaixo.
+CONFIG_NAME = "config2"
+
+# Carrega dinamicamente o módulo de configuração especificado
+config = importlib.import_module(f'configs.{CONFIG_NAME}')
+
+# --- Carrega os parâmetros do arquivo de configuração ---
+# Hiperparâmetros do Agente
+ALPHA = config.ALPHA
+GAMMA = config.GAMMA
+LAMBDA = config.LAMBDA
+# Parâmetros de Exploração
+EPSILON = config.EPSILON
+EPSILON_DECAY_RATE = config.EPSILON_DECAY_RATE
+MIN_EPSILON = config.MIN_EPSILON
+# Parâmetros de Arquivo
+FILENAME_BASE = config.FILENAME_BASE
+
 OUTPUT_FILENAME = f"npy/{FILENAME_BASE}.npy"   
 LOG_FILENAME = f"trainLog/{FILENAME_BASE}.txt"
+# Parâmetros Gerais e do Ambiente
+MASTER_SEED = config.MASTER_SEED
+GRAVITY = config.GRAVITY
+FORCE_MAGNITUDE = config.FORCE_MAGNITUDE
+POSITION_LIMIT = config.POSITION_LIMIT
+ANGLE_LIMIT_RADS = config.ANGLE_LIMIT_RADS
+VELOCITY_LIMIT = config.VELOCITY_LIMIT
+ANGULAR_VELOCITY_LIMIT = config.ANGULAR_VELOCITY_LIMIT
+N_POSITION, N_VELOCITY, N_ANGLE, N_ANGULAR_VELOCITY = config.N_POSITION, config.N_VELOCITY, config.N_ANGLE, config.N_ANGULAR_VELOCITY
+NUM_EPISODES = config.NUM_EPISODES
+MAX_STEPS = config.MAX_STEPS
+EARLY_STOP_THRESHOLD, EARLY_STOP_WINDOW, EARLY_STOP_SUCCESS_RATE = config.EARLY_STOP_THRESHOLD, config.EARLY_STOP_WINDOW, config.EARLY_STOP_SUCCESS_RATE
+MIN_EPISODES, PLATEAU_WINDOW, PLATEAU_TOLERANCE = config.MIN_EPISODES, config.PLATEAU_WINDOW, config.PLATEAU_TOLERANCE
 
-
-# #   Parâmetros para treino do Q learning
-# # --- Hiperparâmetros do Algoritmo Q(λ) ---
-# ALPHA = 0.1 # Taxa de aprendizado (learning rate)
-# GAMMA = 0.97 # Fator de desconto para recompensas futuras
-# LAMBDA = 0 # Fator de decaimento para os rastros de elegibilidade
-# # --- Parâmetros de Exploração (Epsilon-Greedy) ---
-# EPSILON = 1.0
-# EPSILON_DECAY_RATE = 5e-5
-# MIN_EPSILON = 0.0001
-# # --- Parâmetros de Saída ---
-# FILENAME_BASE = f"treino_Q2"
-# OUTPUT_FILENAME = f"npy/{FILENAME_BASE}.npy"   
-# LOG_FILENAME = f"trainLog/{FILENAME_BASE}.txt"
-
-
-# #   Parâmetros para treino do Q(λ)
-# # --- Hiperparâmetros do Algoritmo Q(λ) ---
-# ALPHA = 0.09 # Taxa de aprendizado (learning rate)
-# GAMMA = 0.97 # Fator de desconto para recompensas futuras
-# LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
-# # --- Parâmetros de Exploração (Epsilon-Greedy) ---
-# EPSILON = 1.0
-# EPSILON_DECAY_RATE = 5e-5
-# MIN_EPSILON = 0.0001
-# # --- Parâmetros de Saída ---
-# FILENAME_BASE = f"treino_Qlambda"
-# OUTPUT_FILENAME = f"npy/{FILENAME_BASE}.npy"   
-# LOG_FILENAME = f"trainLog/{FILENAME_BASE}.txt"
-#--------------------------------------------------------------------------------------
-
-
-# --- CONTROLE DE SEEDS PARA REPRODUTIBILIDADE ---
-MASTER_SEED = 17  # Seed principal para reprodutibilidade
-np.random.seed(MASTER_SEED)  # seed do NumPy
-# --- Parâmetros Físicos Configuráveis ---
-GRAVITY = 10.0
-FORCE_MAGNITUDE = 1.5
-# --- Restrições Físicas Impostas ao Problema ---
-POSITION_LIMIT = 1
-ANGLE_LIMIT_RADS = 0.5
-VELOCITY_LIMIT = 3
-ANGULAR_VELOCITY_LIMIT = 3
-
-# --- Parâmetros da Discretização do Espaço de Estados ---
-# Define em quantas "caixas" cada variável contínua será dividida.
-N_POSITION = 5
-N_VELOCITY = 5
-N_ANGLE = 7
-N_ANGULAR_VELOCITY = 7
+np.random.seed(MASTER_SEED)  # Aplica a seed do NumPy
 STATE_DIMS = (N_POSITION, N_ANGLE, N_VELOCITY, N_ANGULAR_VELOCITY)
-
-# --- Parâmetros de Treinamento ---
-NUM_EPISODES = 4000
-MAX_STEPS = 1000 # Número máximo de passos por episódio
-
-# --- Parâmetros de Early Stopping ---
-EARLY_STOP_THRESHOLD = 900        # Recompensa mínima para "sucesso"
-EARLY_STOP_WINDOW = 300           # Janela de avaliação
-EARLY_STOP_SUCCESS_RATE = 0.98     # 98% de sucessos necessários
-MIN_EPISODES = 200               # Mínimo antes de poder parar
-PLATEAU_WINDOW = 500              # Janela para detectar platô
-PLATEAU_TOLERANCE = 10            # Tolerância para platô
-
-
-
 
 # --- Instanciação do Agente de IA ---
 q_agent = QLambdaCausal(
@@ -122,6 +80,13 @@ observation, info = env.reset(seed=MASTER_SEED) # Inicializamos uma seed para to
 epsilon = EPSILON
 
 running = True
+
+# --- Cria os diretórios de saída se não existirem ---
+for path in [OUTPUT_FILENAME, LOG_FILENAME]:
+    dir_name = os.path.dirname(path)
+    if dir_name and not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
 with open(LOG_FILENAME, 'w', encoding='utf-8') as log_file:
     try:
         # --- Cria e escreve o cabeçalho no arquivo de log ---
@@ -155,6 +120,7 @@ Vel. Angular:{N_ANGULAR_VELOCITY} bins
 --- Configurações Gerais ---
 Episódios de Treino: {NUM_EPISODES}
 Passos Máximos por Episódio: {MAX_STEPS}
+Seed de Reprodutibilidade: {MASTER_SEED}
 ======================================================================\n\n"""
         log_file.write(header)
 
@@ -219,7 +185,7 @@ Passos Máximos por Episódio: {MAX_STEPS}
                 success_rate_str = f", Taxa Sucesso: {success_rate:.2%}"
                 
                 # Log simplificado - episódio, taxa de sucesso, recompensa e epsilon
-                log_message = f"Episódio: {episode + 1:4}/{NUM_EPISODES}{success_rate_str:22}, Recompensa: {total_reward:4}, Epsilon: {epsilon:.4f}, Tempo: {elapsed_time:.0f}s"
+                log_message = f"Episódio: {episode + 1:4}/{NUM_EPISODES}{success_rate_str:22}, Recompensa: {total_reward:4}, Epsilon: {epsilon:.5f}, Tempo: {elapsed_time:.0f}s"
                 
                 print(log_message)
                 log_file.write(log_message + '\n')
@@ -330,7 +296,8 @@ Epsilon Final: {epsilon:.6f}
                 'ALPHA': ALPHA,
                 'GAMMA': GAMMA,
                 'LAMBDA': LAMBDA,
-                'MAX_STEPS': MAX_STEPS
+                'MAX_STEPS': MAX_STEPS,
+                'MASTER_SEED': MASTER_SEED
             }
         }
         
