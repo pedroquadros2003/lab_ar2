@@ -7,13 +7,13 @@ from q_lambda import QLambdaCausal
 
 # --- Parâmetros de Entrada e Saída ---
 # Especifique o arquivo .npy do modelo treinado que você quer testar.
-FILENAME_BASE = "treino_lambda_0.8" 
-INPUT_Q_VALUES_FILENAME = f"{FILENAME_BASE}.npy"
-TEST_LOG_FILENAME = f"{FILENAME_BASE}_TestLog.txt"
+FILENAME_BASE = "treino_Qlambda" 
+INPUT_Q_VALUES_FILENAME = f"npy/{FILENAME_BASE}.npy"
+TEST_LOG_FILENAME = f"trainLog/{FILENAME_BASE}_TestLog.txt"
 
 # --- Parâmetros de Teste ---
 NUM_TEST_EPISODES = 20 # Número de episódios para rodar o teste
-FPS = 20 # Para visualização
+FPS = 10000 # Para visualização
 RENDER_MODE = 'human' # Use 'human' para ver o agente ou 'rgb_array' para rodar sem visualização.
 
 # --- Carregamento do Modelo e Parâmetros ---

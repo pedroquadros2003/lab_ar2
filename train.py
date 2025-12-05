@@ -3,47 +3,89 @@ import time
 import numpy as np
 from custom_termination_wrapper import CustomTerminationWrapper
 from q_lambda import QLambdaCausal
+import grafico
+
+# -------------------------------------------------------------------------------------
+#   Parâmetros para treino do Q learning com valores da aula
+# --- Hiperparâmetros do Algoritmo Q(λ) ---
+ALPHA = 0.11 # Taxa de aprendizado (learning rate)
+GAMMA = 0.97 # Fator de desconto para recompensas futuras
+LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
+# --- Parâmetros de Exploração (Epsilon-Greedy) ---
+EPSILON = 1.0
+EPSILON_DECAY_RATE = 5e-5
+MIN_EPSILON = 0.00001
+# --- Parâmetros de Saída ---
+FILENAME_BASE = f"treino_Qlambda3"
+OUTPUT_FILENAME = f"npy/{FILENAME_BASE}.npy"   
+LOG_FILENAME = f"trainLog/{FILENAME_BASE}.txt"
 
 
+# #   Parâmetros para treino do Q learning
+# # --- Hiperparâmetros do Algoritmo Q(λ) ---
+# ALPHA = 0.1 # Taxa de aprendizado (learning rate)
+# GAMMA = 0.97 # Fator de desconto para recompensas futuras
+# LAMBDA = 0 # Fator de decaimento para os rastros de elegibilidade
+# # --- Parâmetros de Exploração (Epsilon-Greedy) ---
+# EPSILON = 1.0
+# EPSILON_DECAY_RATE = 5e-5
+# MIN_EPSILON = 0.0001
+# # --- Parâmetros de Saída ---
+# FILENAME_BASE = f"treino_Q2"
+# OUTPUT_FILENAME = f"npy/{FILENAME_BASE}.npy"   
+# LOG_FILENAME = f"trainLog/{FILENAME_BASE}.txt"
+
+
+# #   Parâmetros para treino do Q(λ)
+# # --- Hiperparâmetros do Algoritmo Q(λ) ---
+# ALPHA = 0.09 # Taxa de aprendizado (learning rate)
+# GAMMA = 0.97 # Fator de desconto para recompensas futuras
+# LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
+# # --- Parâmetros de Exploração (Epsilon-Greedy) ---
+# EPSILON = 1.0
+# EPSILON_DECAY_RATE = 5e-5
+# MIN_EPSILON = 0.0001
+# # --- Parâmetros de Saída ---
+# FILENAME_BASE = f"treino_Qlambda"
+# OUTPUT_FILENAME = f"npy/{FILENAME_BASE}.npy"   
+# LOG_FILENAME = f"trainLog/{FILENAME_BASE}.txt"
+#--------------------------------------------------------------------------------------
+
+
+# --- CONTROLE DE SEEDS PARA REPRODUTIBILIDADE ---
+MASTER_SEED = 17  # Seed principal para reprodutibilidade
+np.random.seed(MASTER_SEED)  # seed do NumPy
 # --- Parâmetros Físicos Configuráveis ---
 GRAVITY = 10.0
 FORCE_MAGNITUDE = 1.5
-
 # --- Restrições Físicas Impostas ao Problema ---
-
 POSITION_LIMIT = 1
 ANGLE_LIMIT_RADS = 0.5
 VELOCITY_LIMIT = 3
 ANGULAR_VELOCITY_LIMIT = 3
 
-# --- Hiperparâmetros do Algoritmo Q(λ) ---
-
-ALPHA = 0.05  # Taxa de aprendizado (learning rate)
-GAMMA = 0.95 # Fator de desconto para recompensas futuras
-LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
-
-# --- Parâmetros de Exploração (Epsilon-Greedy) ---
-
-EPSILON = 1.0
-EPSILON_DECAY_RATE = 0.00005
-MIN_EPSILON = 0.01
-
 # --- Parâmetros da Discretização do Espaço de Estados ---
 # Define em quantas "caixas" cada variável contínua será dividida.
-N_POSITION = 6
-N_ANGLE = 10
-N_VELOCITY = 6
-N_ANGULAR_VELOCITY = 10
+N_POSITION = 5
+N_VELOCITY = 5
+N_ANGLE = 7
+N_ANGULAR_VELOCITY = 7
 STATE_DIMS = (N_POSITION, N_ANGLE, N_VELOCITY, N_ANGULAR_VELOCITY)
 
 # --- Parâmetros de Treinamento ---
-NUM_EPISODES = 3000
-MAX_STEPS = 500 # Número máximo de passos por episódio
+NUM_EPISODES = 4000
+MAX_STEPS = 1000 # Número máximo de passos por episódio
 
-# --- Parâmetros de Saída ---
-FILENAME_BASE = f"treino_resenha"
-OUTPUT_FILENAME = f"{FILENAME_BASE}.npy"   
-LOG_FILENAME = f"{FILENAME_BASE}.txt"
+# --- Parâmetros de Early Stopping ---
+EARLY_STOP_THRESHOLD = 900        # Recompensa mínima para "sucesso"
+EARLY_STOP_WINDOW = 300           # Janela de avaliação
+EARLY_STOP_SUCCESS_RATE = 0.98     # 98% de sucessos necessários
+MIN_EPISODES = 200               # Mínimo antes de poder parar
+PLATEAU_WINDOW = 500              # Janela para detectar platô
+PLATEAU_TOLERANCE = 10            # Tolerância para platô
+
+
+
 
 # --- Instanciação do Agente de IA ---
 q_agent = QLambdaCausal(
@@ -59,7 +101,7 @@ q_agent = QLambdaCausal(
 )
 
 # Crie o ambiente. Use 'human' para ver o agente ou 'rgb_array' para treinar mais rápido.
-env = gym.make('InvertedPendulum-v5', render_mode='rgb_array')
+env = gym.make('InvertedPendulum-v5', render_mode=None)
 
 # Aplica um limite de tempo (passos) para cada episódio.
 env = gym.wrappers.TimeLimit(env, max_episode_steps=MAX_STEPS)
@@ -76,7 +118,7 @@ env = CustomTerminationWrapper(
 )
 
 # Reinicie o ambiente para obter o estado inicial.
-observation, info = env.reset(seed=42) # Inicializamos uma seed para tornar o treino reprodutível
+observation, info = env.reset(seed=MASTER_SEED) # Inicializamos uma seed para tornar o treino reprodutível
 epsilon = EPSILON
 
 running = True
@@ -116,6 +158,11 @@ Passos Máximos por Episódio: {MAX_STEPS}
 ======================================================================\n\n"""
         log_file.write(header)
 
+        # Inicializar tempo de treinamento e variáveis de early stopping
+        start_time = time.time()
+        recent_rewards = []
+        performance_history = []
+        
         for episode in range(NUM_EPISODES):
             # Reinicia o ambiente para cada episódio
             prev_observation, info = env.reset()
@@ -146,17 +193,125 @@ Passos Máximos por Episódio: {MAX_STEPS}
                 # Decai o epsilon para reduzir a exploração ao longo do tempo
                 epsilon = max(MIN_EPSILON, epsilon - EPSILON_DECAY_RATE)
 
-            if (episode + 1) % 100 == 0:
-                log_message = f"Episódio: {episode + 1}/{NUM_EPISODES}, Recompensa Total: {total_reward:.2f}, Epsilon: {epsilon:.4f}"
+            # Armazenar recompensa para análise de early stopping
+            recent_rewards.append(total_reward)
+            if len(recent_rewards) > EARLY_STOP_WINDOW:
+                recent_rewards.pop(0)
+            
+            # Função para gerar e salvar o log do episódio atual
+            def log_current_episode():
+                # Calcular tempo decorrido
+                elapsed_time = time.time() - start_time
+                episodes_per_second = (episode + 1) / elapsed_time if elapsed_time > 0 else 0
+                
+                # Calcular taxa de sucesso sempre - inicia em 0.00%
+                if len(recent_rewards) == EARLY_STOP_WINDOW:
+                    successful_recent = sum(1 for r in recent_rewards if r >= EARLY_STOP_THRESHOLD)
+                    success_rate = successful_recent / EARLY_STOP_WINDOW
+                elif len(recent_rewards) > 0:
+                    # Calcula taxa baseada nos episódios disponíveis até agora
+                    successful_recent = sum(1 for r in recent_rewards if r >= EARLY_STOP_THRESHOLD)
+                    success_rate = successful_recent / len(recent_rewards)
+                else:
+                    # Nos primeiros episódios, taxa de sucesso é 0
+                    success_rate = 0.0
+                
+                success_rate_str = f", Taxa Sucesso: {success_rate:.2%}"
+                
+                # Log simplificado - episódio, taxa de sucesso, recompensa e epsilon
+                log_message = f"Episódio: {episode + 1:4}/{NUM_EPISODES}{success_rate_str:22}, Recompensa: {total_reward:4}, Epsilon: {epsilon:.4f}, Tempo: {elapsed_time:.0f}s"
+                
                 print(log_message)
                 log_file.write(log_message + '\n')
+                return success_rate
+            
+            # Print do episódio se for múltiplo de 50 ou se for o último episódio
+            should_log_this_episode = (episode + 1) % 50 == 0 or episode + 1 == NUM_EPISODES
+            if should_log_this_episode:
+                current_success_rate = log_current_episode()
+            
+            # Critério 1: Performance consistente
+            if episode >= MIN_EPISODES and len(recent_rewards) == EARLY_STOP_WINDOW:
+                successful_episodes = sum(1 for r in recent_rewards if r >= EARLY_STOP_THRESHOLD)
+                success_rate = successful_episodes / EARLY_STOP_WINDOW
+                
+                if success_rate >= EARLY_STOP_SUCCESS_RATE:
+                    # Se não logamos neste episódio ainda, fazer o log antes do break
+                    if not should_log_this_episode:
+                        log_current_episode()
+                    
+                    early_stop_msg = f"""\n======================================================================
+                    EARLY STOPPING - CONVERGÊNCIA DETECTADA
+======================================================================
+Episódio: {episode + 1}
+Taxa de Sucesso: {success_rate:.2%} (últimos {EARLY_STOP_WINDOW} episódios)
+Recompensa Média: {np.mean(recent_rewards):.2f}
+Critério: {successful_episodes}/{EARLY_STOP_WINDOW} episódios com recompensa ≥ {EARLY_STOP_THRESHOLD}
+======================================================================"""
+                    print(early_stop_msg)
+                    log_file.write(early_stop_msg + '\n')
+                    break
+
+            if (episode + 1) % 50 == 0:
+                current_avg = np.mean(recent_rewards) if recent_rewards else 0
+                performance_history.append(current_avg)
+                
+                # Critério 2: Detecção de platô
+                if len(performance_history) >= PLATEAU_WINDOW // 100:
+                    recent_performance = performance_history[-5:]  # Últimos 500 episódios
+                    if len(recent_performance) >= 3:
+                        performance_range = max(recent_performance) - min(recent_performance)
+                        plateau_avg = np.mean(recent_performance)
+                        
+                        if performance_range <= PLATEAU_TOLERANCE and plateau_avg >= EARLY_STOP_THRESHOLD * 0.9:
+                            # Se não logamos neste episódio ainda, fazer o log antes do break
+                            if not should_log_this_episode:
+                                log_current_episode()
+                            
+                            early_stop_msg = f"""\n======================================================================
+                    EARLY STOPPING - PLATÔ DETECTADO
+======================================================================
+Episódio: {episode + 1}
+Performance Estabilizada: {plateau_avg:.2f}
+Variação nos últimos {PLATEAU_WINDOW} episódios: {performance_range:.2f}
+Sem melhoria significativa detectada.
+======================================================================"""
+                            print(early_stop_msg)
+                            log_file.write(early_stop_msg + '\n')
+                            break
 
     finally:
         # Garante que o ambiente será fechado ao final.
         env.close()
+        
+        # Calcular tempo total de treinamento
+        total_training_time = time.time() - start_time
+        episodes_total = episode + 1
+        avg_speed = episodes_total / total_training_time if total_training_time > 0 else 0
+        
         final_message1 = "Treinamento concluído. Salvando os valores Q..."
         print(final_message1)
+        print(f"Tempo total: {total_training_time:.0f}s, Velocidade média: {avg_speed:.2f}ep/s")
+        
         log_file.write(final_message1 + '\n')
+        log_file.write(f"Tempo total de treinamento: {total_training_time:.2f} segundos\n")
+        log_file.write(f"Velocidade média: {avg_speed:.2f} episódios por segundo\n")
+        
+        # Resumo de performance final
+        if recent_rewards:
+            final_avg = np.mean(recent_rewards)
+            final_successful = sum(1 for r in recent_rewards if r >= EARLY_STOP_THRESHOLD)
+            final_success_rate = final_successful / len(recent_rewards)
+            
+            summary = f"""\n--- RESUMO DE PERFORMANCE FINAL ---
+Episódios Executados: {episode + 1}
+Velocidade Média: {avg_speed:.2f} ep/s
+Recompensa Média Final: {final_avg:.2f}
+Taxa de Sucesso Final: {final_success_rate:.2%}
+Epsilon Final: {epsilon:.6f}
+"""
+            print(summary)
+            log_file.write(summary + '\n')
 
         # Agrupa a matriz Q e os parâmetros para salvar em um único arquivo.
         data_to_save = {
@@ -172,6 +327,8 @@ Passos Máximos por Episódio: {MAX_STEPS}
                 'N_ANGLE': N_ANGLE,
                 'N_VELOCITY': N_VELOCITY,
                 'N_ANGULAR_VELOCITY': N_ANGULAR_VELOCITY,
+                'ALPHA': ALPHA,
+                'GAMMA': GAMMA,
                 'LAMBDA': LAMBDA,
                 'MAX_STEPS': MAX_STEPS
             }
@@ -183,3 +340,11 @@ Passos Máximos por Episódio: {MAX_STEPS}
         final_message2 = f"Matriz Q salva em '{OUTPUT_FILENAME}'."
         print(final_message2)
         log_file.write(final_message2 + '\n')
+
+# Gerar gráfico da variação de recompensa usando o módulo grafico.py
+print("\nGerando gráfico de desempenho...")
+try:
+    grafico.create_reward_graph(OUTPUT_FILENAME)
+    print("Gráfico gerado com sucesso!")
+except Exception as e:
+    print(f"Erro ao gerar gráfico: {e}")
