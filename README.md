@@ -34,16 +34,43 @@ pip install -r requirements.txt
 
 ### 2. Treinando o Agente
 
-O script `train.py` é responsável por treinar o agente. Você pode customizar os hiperparâmetros (como `LAMBDA`, `ALPHA`, `NUM_EPISODES`, etc.) diretamente no início do arquivo.
+O script `train.py` é responsável por treinar o agente. Você pode customizar os hiperparâmetros (como `LAMBDA`, `ALPHA`, `NUM_EPISODES`, etc.) nos arquivos da pasta `configs` e selecionar o arquivo de configuração no começo de `train.py` alterando a variável `CONFIG_NAME`.
 
 ```bash
 # Execute o script de treinamento
 python train.py
 ```
 
-Ao final, dois arquivos serão gerados, nomeados com base no valor de `LAMBDA` (ex: `treino.npy` e `treino.txt`):
-- **`.npy`**: Contém a matriz Q aprendida pelo agente e todos os parâmetros de treinamento.
-- **`.txt`**: Um arquivo de log com o progresso do treinamento (recompensa a cada 100 episódios).
+**Durante o treinamento**, você verá logs no console a cada 50 episódios mostrando:
+- **Episódio atual** e progresso
+- **Taxa de Sucesso**: Porcentagem de episódios bem-sucedidos (recompensa ≥ 900) nos últimos 300 episódios
+- **Recompensa**: Recompensa total do episódio atual
+- **Epsilon**: Nível atual de exploração
+- **Tempo decorrido**
+
+Exemplo de log:
+```
+Episódio: 150/4000, Taxa Sucesso: 12.67%, Recompensa: 456.78, Epsilon: 0.9384, Tempo: 45s
+```
+
+Ao final, dois arquivos serão gerados na pasta correspondente:
+- **`npy/[nome].npy`**: Contém a matriz Q aprendida e todos os parâmetros de treinamento.
+- **`trainLog/[nome].txt`**: Log detalhado com progresso do treinamento.
+
+### Early Stopping (Parada Antecipada)
+
+O treinamento pode parar automaticamente antes de completar todos os episódios em duas situações:
+
+#### **Critério de Sucesso**
+- **Condição**: Taxa de sucesso ≥ 98%
+- **Significado**: 294 dos últimos 300 episódios tiveram recompensa ≥ 900
+- **Objetivo**: Evita treinamento desnecessário quando o agente já dominou a tarefa
+
+#### **Critério de Platô**
+- **Condição**: Performance estável por 500 episódios com pouca variação (≤ 10) e média ≥ 810
+- **Significado**: O agente parou de melhorar significativamente
+- **Objetivo**: Economiza tempo quando não há mais progresso esperado
+
 
 ### 3. Testando o Agente
 
@@ -61,11 +88,11 @@ Após o treinamento, use o script `test.py` para avaliar o desempenho do agente 
     python test.py
     ```
 
-Uma janela do Gymnasium será aberta, mostrando o agente em ação. Ao final, um arquivo de log de teste (ex: `treino_TestLog.txt`) será criado com a recompensa obtida em cada um dos 100 episódios de teste e a média final.
+Uma janela do Gymnasium será aberta, mostrando o agente em ação. O teste executa **20 episódios** sem exploração (epsilon=0) para avaliar a performance pura do agente. Ao final, um arquivo de log de teste será criado com a recompensa de cada episódio e a média final.
 
 ## Parâmetros de Treinamento (em `train.py`)
 
-Você pode ajustar os seguintes parâmetros no início do script `train.py` para experimentar diferentes configurações:
+Você pode ajustar os seguintes parâmetros nos arquivps de configuração na pasta `configs`para experimentar diferentes configurações:
 
 ### Parâmetros Físicos e de Ambiente
 - **`GRAVITY`**: Altera a força da gravidade no ambiente.
@@ -89,9 +116,36 @@ Você pode ajustar os seguintes parâmetros no início do script `train.py` para
 - **`NUM_EPISODES`**: O número total de episódios que o agente irá treinar.
 - **`MAX_STEPS`**: O número máximo de passos (ações) que um agente pode executar em um único episódio antes que ele seja encerrado. Isso incentiva o agente a se equilibrar por mais tempo para obter uma recompensa maior.
 
+### Configurações de Early Stopping
+- **`EARLY_STOP_SUCCESS_RATE`**: Taxa de sucesso mínima (98%) para parada antecipada por sucesso.
+- **`EARLY_STOP_THRESHOLD`**: Recompensa mínima (900) para considerar um episódio "bem-sucedido".
+- **`EARLY_STOP_WINDOW`**: Janela de avaliação (300 episódios) para calcular a taxa de sucesso.
+- **`PLATEAU_WINDOW`**: Janela (500 episódios) para detectar platô de performance.
+- **`PLATEAU_TOLERANCE`**: Variação máxima (10) permitida para considerar platô.
+
 ## Arquivos do Projeto
 
 - **`train.py`**: Script principal para executar o treinamento do agente.
 - **`test.py`**: Script para carregar um agente treinado e avaliá-lo visualmente.
+- **`grafico.py`**: Script para gerar gráficos da evolução do treinamento.
 - **`q_lambda.py`**: Contém a classe `QLambdaCausal` que implementa o algoritmo de aprendizado.
-- **`custom_termination_wrapper.py`**: Wrapper do Gymnasium para customizar as condições de término do ambiente (limites de ângulo, posição, etc.).
+- **`custom_termination_wrapper.py`**: Wrapper do Gymnasium para customizar as condições de término do ambiente.
+- **`npy/`**: Pasta contendo os modelos treinados (arquivos `.npy`).
+- **`trainLog/`**: Pasta contendo os logs de treinamento (arquivos `.txt`).
+- **`requirements.txt`**: Lista de dependências do projeto.
+
+### 4. Visualizando os Resultados
+
+Durante o treinamento, o script `grafico.py` é executado para gerar gráficos da evolução do treinamento:
+
+O script irá:
+- **Ler os logs** de treinamento (arquivos `.txt`)
+- **Gerar gráficos** mostrando a evolução da taxa de sucesso
+- **Incluir estatísticas** como máximo, média geral e média final
+- **Mostrar parâmetros** usados no treinamento (λ, α, γ)
+
+O gráfico inclui:
+- **Linha azul**: Taxa de sucesso por episódio
+- **Linha vermelha**: Média móvel (suavização)
+- **Linhas de referência**: 50% e 90% de sucesso
+- **Estatísticas**: Performance máxima, média geral e final

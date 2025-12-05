@@ -9,7 +9,7 @@ import grafico
 
 # --- SELEÇÃO DE CONFIGURAÇÃO ---
 # Para mudar o experimento, altere o nome do arquivo na string abaixo.
-CONFIG_NAME = "config2"
+CONFIG_NAME = "Qepsilon01"
 
 # Carrega dinamicamente o módulo de configuração especificado
 config = importlib.import_module(f'configs.{CONFIG_NAME}')
