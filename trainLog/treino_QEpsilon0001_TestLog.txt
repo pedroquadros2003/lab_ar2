@@ -1,0 +1,30 @@
+
+======================================================================
+               RELATÓRIO DE TESTE - PÊNDULO INVERTIDO
+======================================================================
+Modelo Carregado: npy/treino_QEpsilon0001.npy
+Número de Episódios de Teste: 20
+======================================================================
+
+Episodio de Teste: 1/20, Recompensa Total: 1000.00
+Episodio de Teste: 2/20, Recompensa Total: 1000.00
+Episodio de Teste: 3/20, Recompensa Total: 1000.00
+Episodio de Teste: 4/20, Recompensa Total: 1000.00
+Episodio de Teste: 5/20, Recompensa Total: 352.00
+Episodio de Teste: 6/20, Recompensa Total: 1000.00
+Episodio de Teste: 7/20, Recompensa Total: 1000.00
+Episodio de Teste: 8/20, Recompensa Total: 1000.00
+Episodio de Teste: 9/20, Recompensa Total: 1000.00
+Episodio de Teste: 10/20, Recompensa Total: 530.00
+Episodio de Teste: 11/20, Recompensa Total: 999.00
+Episodio de Teste: 12/20, Recompensa Total: 1000.00
+Episodio de Teste: 13/20, Recompensa Total: 1000.00
+Episodio de Teste: 14/20, Recompensa Total: 1000.00
+Episodio de Teste: 15/20, Recompensa Total: 248.00
+Episodio de Teste: 16/20, Recompensa Total: 69.00
+Episodio de Teste: 17/20, Recompensa Total: 1000.00
+Episodio de Teste: 18/20, Recompensa Total: 532.00
+Episodio de Teste: 19/20, Recompensa Total: 1000.00
+Episodio de Teste: 20/20, Recompensa Total: 1000.00
+
+Recompensa Media em 20 episodios: 836.50

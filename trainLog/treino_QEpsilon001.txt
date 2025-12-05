@@ -1,0 +1,124 @@
+
+======================================================================
+               RELATÓRIO DE TREINAMENTO - PÊNDULO INVERTIDO
+======================================================================
+
+--- Hiperparâmetros do Algoritmo Q(λ) ---
+Taxa de Aprendizado (ALPHA): 0.1
+Fator de Desconto (GAMMA):   0.97
+Fator de Decaimento (LAMBDA):  0
+
+--- Restrições Físicas ---
+Limite de Posição:    1
+Limite de Ângulo (rad): 0.5
+Limite de Velocidade: 3
+Limite de Vel. Angular: 3
+
+--- Parâmetros de Exploração (Epsilon-Greedy) ---
+Epsilon Inicial:      1.0
+Taxa de Decaimento:   5e-05
+Epsilon Mínimo:       0.001
+
+--- Discretização do Espaço de Estados ---
+Posição:     5 bins
+Ângulo:      7 bins
+Velocidade:  5 bins
+Vel. Angular:7 bins
+
+--- Configurações Gerais ---
+Episódios de Treino: 4000
+Passos Máximos por Episódio: 1000
+======================================================================
+
+Episódio: 50/4000, Taxa Sucesso: 0.00%, Recompensa: 2.00, Epsilon: 0.9793, Tempo: 0s
+Episódio: 100/4000, Taxa Sucesso: 0.00%, Recompensa: 4.00, Epsilon: 0.9599, Tempo: 0s
+Episódio: 150/4000, Taxa Sucesso: 0.00%, Recompensa: 8.00, Epsilon: 0.9384, Tempo: 0s
+Episódio: 200/4000, Taxa Sucesso: 0.00%, Recompensa: 3.00, Epsilon: 0.9150, Tempo: 0s
+Episódio: 250/4000, Taxa Sucesso: 0.00%, Recompensa: 6.00, Epsilon: 0.8880, Tempo: 0s
+Episódio: 300/4000, Taxa Sucesso: 0.00%, Recompensa: 3.00, Epsilon: 0.8638, Tempo: 0s
+Episódio: 350/4000, Taxa Sucesso: 0.00%, Recompensa: 10.00, Epsilon: 0.8360, Tempo: 0s
+Episódio: 400/4000, Taxa Sucesso: 0.00%, Recompensa: 2.00, Epsilon: 0.8122, Tempo: 0s
+Episódio: 450/4000, Taxa Sucesso: 0.00%, Recompensa: 6.00, Epsilon: 0.7867, Tempo: 0s
+Episódio: 500/4000, Taxa Sucesso: 0.00%, Recompensa: 12.00, Epsilon: 0.7574, Tempo: 0s
+Episódio: 550/4000, Taxa Sucesso: 0.00%, Recompensa: 32.00, Epsilon: 0.7273, Tempo: 0s
+Episódio: 600/4000, Taxa Sucesso: 0.00%, Recompensa: 47.00, Epsilon: 0.6906, Tempo: 0s
+Episódio: 650/4000, Taxa Sucesso: 0.00%, Recompensa: 8.00, Epsilon: 0.6596, Tempo: 1s
+Episódio: 700/4000, Taxa Sucesso: 0.00%, Recompensa: 16.00, Epsilon: 0.6224, Tempo: 1s
+Episódio: 750/4000, Taxa Sucesso: 0.00%, Recompensa: 6.00, Epsilon: 0.5874, Tempo: 1s
+Episódio: 800/4000, Taxa Sucesso: 0.00%, Recompensa: 4.00, Epsilon: 0.5509, Tempo: 1s
+Episódio: 850/4000, Taxa Sucesso: 0.00%, Recompensa: 16.00, Epsilon: 0.5023, Tempo: 1s
+Episódio: 900/4000, Taxa Sucesso: 0.00%, Recompensa: 24.00, Epsilon: 0.4480, Tempo: 1s
+Episódio: 950/4000, Taxa Sucesso: 0.00%, Recompensa: 3.00, Epsilon: 0.3894, Tempo: 1s
+Episódio: 1000/4000, Taxa Sucesso: 0.00%, Recompensa: 12.00, Epsilon: 0.3166, Tempo: 1s
+Episódio: 1050/4000, Taxa Sucesso: 0.00%, Recompensa: 23.00, Epsilon: 0.2166, Tempo: 1s
+Episódio: 1100/4000, Taxa Sucesso: 0.00%, Recompensa: 133.00, Epsilon: 0.0162, Tempo: 1s
+Episódio: 1150/4000, Taxa Sucesso: 13.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 5s
+Episódio: 1200/4000, Taxa Sucesso: 25.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 7s
+Episódio: 1250/4000, Taxa Sucesso: 38.00%, Recompensa: 523.00, Epsilon: 0.0010, Tempo: 10s
+Episódio: 1300/4000, Taxa Sucesso: 51.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 13s
+Episódio: 1350/4000, Taxa Sucesso: 63.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 16s
+Episódio: 1400/4000, Taxa Sucesso: 76.67%, Recompensa: 88.00, Epsilon: 0.0010, Tempo: 19s
+Episódio: 1450/4000, Taxa Sucesso: 76.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 22s
+Episódio: 1500/4000, Taxa Sucesso: 77.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 25s
+Episódio: 1550/4000, Taxa Sucesso: 78.00%, Recompensa: 102.00, Epsilon: 0.0010, Tempo: 28s
+Episódio: 1600/4000, Taxa Sucesso: 76.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 31s
+Episódio: 1650/4000, Taxa Sucesso: 69.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 32s
+Episódio: 1700/4000, Taxa Sucesso: 70.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 36s
+Episódio: 1750/4000, Taxa Sucesso: 71.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 39s
+Episódio: 1800/4000, Taxa Sucesso: 70.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 42s
+Episódio: 1850/4000, Taxa Sucesso: 69.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 45s
+Episódio: 1900/4000, Taxa Sucesso: 72.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 48s
+Episódio: 1950/4000, Taxa Sucesso: 78.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 50s
+Episódio: 2000/4000, Taxa Sucesso: 74.67%, Recompensa: 503.00, Epsilon: 0.0010, Tempo: 53s
+Episódio: 2050/4000, Taxa Sucesso: 72.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 56s
+Episódio: 2100/4000, Taxa Sucesso: 72.67%, Recompensa: 998.00, Epsilon: 0.0010, Tempo: 59s
+Episódio: 2150/4000, Taxa Sucesso: 65.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 60s
+Episódio: 2200/4000, Taxa Sucesso: 60.00%, Recompensa: 123.00, Epsilon: 0.0010, Tempo: 63s
+Episódio: 2250/4000, Taxa Sucesso: 54.00%, Recompensa: 521.00, Epsilon: 0.0010, Tempo: 64s
+Episódio: 2300/4000, Taxa Sucesso: 42.67%, Recompensa: 11.00, Epsilon: 0.0010, Tempo: 64s
+Episódio: 2350/4000, Taxa Sucesso: 31.00%, Recompensa: 19.00, Epsilon: 0.0010, Tempo: 64s
+Episódio: 2400/4000, Taxa Sucesso: 22.67%, Recompensa: 86.00, Epsilon: 0.0010, Tempo: 66s
+Episódio: 2450/4000, Taxa Sucesso: 26.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 68s
+Episódio: 2500/4000, Taxa Sucesso: 26.00%, Recompensa: 258.00, Epsilon: 0.0010, Tempo: 70s
+Episódio: 2550/4000, Taxa Sucesso: 31.67%, Recompensa: 312.00, Epsilon: 0.0010, Tempo: 73s
+Episódio: 2600/4000, Taxa Sucesso: 39.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 75s
+Episódio: 2650/4000, Taxa Sucesso: 47.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 77s
+Episódio: 2700/4000, Taxa Sucesso: 48.00%, Recompensa: 489.00, Epsilon: 0.0010, Tempo: 79s
+Episódio: 2750/4000, Taxa Sucesso: 47.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 81s
+Episódio: 2800/4000, Taxa Sucesso: 46.00%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 83s
+Episódio: 2850/4000, Taxa Sucesso: 44.00%, Recompensa: 434.00, Epsilon: 0.0010, Tempo: 85s
+Episódio: 2900/4000, Taxa Sucesso: 40.33%, Recompensa: 793.00, Epsilon: 0.0010, Tempo: 87s
+Episódio: 2950/4000, Taxa Sucesso: 41.00%, Recompensa: 97.00, Epsilon: 0.0010, Tempo: 89s
+Episódio: 3000/4000, Taxa Sucesso: 44.33%, Recompensa: 675.00, Epsilon: 0.0010, Tempo: 91s
+Episódio: 3050/4000, Taxa Sucesso: 40.00%, Recompensa: 52.00, Epsilon: 0.0010, Tempo: 93s
+Episódio: 3100/4000, Taxa Sucesso: 34.33%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 94s
+Episódio: 3150/4000, Taxa Sucesso: 30.33%, Recompensa: 832.00, Epsilon: 0.0010, Tempo: 95s
+Episódio: 3200/4000, Taxa Sucesso: 33.33%, Recompensa: 455.00, Epsilon: 0.0010, Tempo: 98s
+Episódio: 3250/4000, Taxa Sucesso: 34.00%, Recompensa: 916.00, Epsilon: 0.0010, Tempo: 100s
+Episódio: 3300/4000, Taxa Sucesso: 32.67%, Recompensa: 501.00, Epsilon: 0.0010, Tempo: 102s
+Episódio: 3350/4000, Taxa Sucesso: 37.33%, Recompensa: 789.00, Epsilon: 0.0010, Tempo: 105s
+Episódio: 3400/4000, Taxa Sucesso: 45.33%, Recompensa: 193.00, Epsilon: 0.0010, Tempo: 107s
+Episódio: 3450/4000, Taxa Sucesso: 46.67%, Recompensa: 452.00, Epsilon: 0.0010, Tempo: 109s
+Episódio: 3500/4000, Taxa Sucesso: 46.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 111s
+Episódio: 3550/4000, Taxa Sucesso: 45.00%, Recompensa: 138.00, Epsilon: 0.0010, Tempo: 113s
+Episódio: 3600/4000, Taxa Sucesso: 40.67%, Recompensa: 1000.00, Epsilon: 0.0010, Tempo: 115s
+Episódio: 3650/4000, Taxa Sucesso: 39.67%, Recompensa: 98.00, Epsilon: 0.0010, Tempo: 117s
+Episódio: 3700/4000, Taxa Sucesso: 38.33%, Recompensa: 75.00, Epsilon: 0.0010, Tempo: 119s
+Episódio: 3750/4000, Taxa Sucesso: 38.67%, Recompensa: 997.00, Epsilon: 0.0010, Tempo: 121s
+Episódio: 3800/4000, Taxa Sucesso: 34.67%, Recompensa: 92.00, Epsilon: 0.0010, Tempo: 122s
+Episódio: 3850/4000, Taxa Sucesso: 27.67%, Recompensa: 40.00, Epsilon: 0.0010, Tempo: 122s
+Episódio: 3900/4000, Taxa Sucesso: 26.00%, Recompensa: 10.00, Epsilon: 0.0010, Tempo: 124s
+Episódio: 3950/4000, Taxa Sucesso: 19.00%, Recompensa: 15.00, Epsilon: 0.0010, Tempo: 124s
+Episódio: 4000/4000, Taxa Sucesso: 11.33%, Recompensa: 104.00, Epsilon: 0.0010, Tempo: 124s
+Treinamento concluído. Salvando os valores Q...
+Tempo total de treinamento: 124.27 segundos
+Velocidade média: 32.19 episódios por segundo
+
+--- RESUMO DE PERFORMANCE FINAL ---
+Episódios Executados: 4000
+Velocidade Média: 32.19 ep/s
+Recompensa Média Final: 234.04
+Taxa de Sucesso Final: 11.33%
+Epsilon Final: 0.001000
+
+Matriz Q salva em 'npy/treino_QEpsilon001.npy'.

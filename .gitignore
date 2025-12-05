@@ -36,8 +36,8 @@ wheels/
 *.swo
 
 # Arquivos específicos do seu projeto
-*.npy
-*.txt
+#*.npy
+#*.txt
 !requirements.txt
 !README.txt
 
