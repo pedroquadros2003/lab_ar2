@@ -7,7 +7,7 @@ from q_lambda import QLambdaCausal
 
 # --- Parâmetros de Entrada e Saída ---
 # Especifique o arquivo .npy do modelo treinado que você quer testar.
-FILENAME_BASE = "treino_Qlambda" 
+FILENAME_BASE = "treino_Qlambda2" 
 INPUT_Q_VALUES_FILENAME = f"npy/{FILENAME_BASE}.npy"
 TEST_LOG_FILENAME = f"trainLog/{FILENAME_BASE}_TestLog.txt"
 

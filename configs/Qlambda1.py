@@ -3,13 +3,13 @@
 # --- Hiperparâmetros do Algoritmo Q(λ) ---
 ALPHA = 0.1 # Taxa de aprendizado (learning rate)
 GAMMA = 0.97 # Fator de desconto para recompensas futuras
-LAMBDA = 0 # Fator de decaimento para os rastros de elegibilidade
+LAMBDA = 0.8 # Fator de decaimento para os rastros de elegibilidade
 # --- Parâmetros de Exploração (Epsilon-Greedy) ---
 EPSILON = 1.0
 EPSILON_DECAY_RATE = 5e-5
 MIN_EPSILON = 0.0001
 # --- Parâmetros de Saída ---
-FILENAME_BASE = "treino_Q2"
+FILENAME_BASE = "treino_Qlambda1"
 
 # --- CONTROLE DE SEEDS PARA REPRODUTIBILIDADE ---
 MASTER_SEED = 17  # Seed principal para reprodutibilidade
