@@ -1,15 +1,19 @@
 import gymnasium as gym
 import time
 import sys
+import os
 import numpy as np
 from custom_termination_wrapper import CustomTerminationWrapper
 from q_lambda import QLambdaCausal
 
 # --- Parâmetros de Entrada e Saída ---
 # Especifique o arquivo .npy do modelo treinado que você quer testar.
-FILENAME_BASE = "treino_Qlambda2" 
+FILENAME_BASE = "treino_QEpsilon0001" 
 INPUT_Q_VALUES_FILENAME = f"npy/{FILENAME_BASE}.npy"
-TEST_LOG_FILENAME = f"trainLog/{FILENAME_BASE}_TestLog.txt"
+
+# Cria a pasta testLog se não existir
+os.makedirs("testLog", exist_ok=True)
+TEST_LOG_FILENAME = f"testLog/{FILENAME_BASE}_TestLog.txt"
 
 # --- Parâmetros de Teste ---
 NUM_TEST_EPISODES = 20 # Número de episódios para rodar o teste
