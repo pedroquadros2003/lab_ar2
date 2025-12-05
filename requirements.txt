@@ -2,3 +2,4 @@ numpy
 gymnasium
 gymnasium[mujoco]
 keyboard
+matplotlib
